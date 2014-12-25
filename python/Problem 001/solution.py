@@ -17,12 +17,10 @@
 
 
 # Task description:
-# If we list all the natural numbers below 10 that are multiples of 3 or 5,
-# we get 3, 5, 6 and 9. The sum of these multiples is 23.
-# Find the sum of all the multiples of 3 or 5 below 1000.
+# Find the sum of all the multiples of 3 or 5 below 1000^2.
+limit = 1000**2
 
-sum = reduce(lambda x, y: x + y
-             if y % 3 == 0 or y % 5 == 0 else x, xrange(1000), 0)
+sum_brute = reduce(lambda x, y: x + y
+             if not y % 3 or not y % 5 else x, xrange(limit), 0)
 
-print 'Sum of all the multiples of 3 or 5 below 1000 is %s' % sum
-
+print 'Sum of all the multiples of 3 or 5 below %s is %s' % (limit, sum_brute)

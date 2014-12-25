@@ -17,9 +17,7 @@
 
 
 # Task description:
-#The prime factors of 13195 are 5, 7, 13 and 29.
-
-#What is the largest prime factor of the number 600851475143 ?
+#What is the largest prime factor of the number 269685300662584836649?
 
 # we will use simple factorizing algorithm from Knuth's The art of computer
 # programming Vol2 4.5.4 Factoring into Primes Algorithm A (Factoring by division)
@@ -40,32 +38,32 @@ def prime_like_number_generator(stop_value=500000):
         item += 4
         yield item
 
-number = 600851475143
+number = 269685300662584836649
 #largest prime factor can't be greater than square of N
-primes = list(prime_like_number_generator(sqrt(number)))
+primes = prime_like_number_generator(sqrt(number))
 
 def prime_factors(number):
     # step A1
-    k = 0
+    k = primes.next()
     n = number
     quotient = number
-    while(quotient > primes[k]):
+    while(quotient > k):
         # step A2
         if(n == 1):
             return
         # step A3
-        quotient = n / primes[k]
-        remainder = n % primes[k]
+        quotient = n / k
+        remainder = n % k
         # step A4
         if(remainder == 0):
             # step A5
-            prime_factor = primes[k]
+            prime_factor = k
             yield prime_factor
             n = quotient
             # return to step A2
         else:
             # step A6
-            k += 1
+            k = primes.next()
             # return to step A3
     # step A7
     prime_factor = n

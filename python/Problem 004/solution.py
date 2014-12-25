@@ -17,17 +17,22 @@
 
 
 # Task description:
-# A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
-# Find the largest palindrome made from the product of two 3-digit numbers.
+# Find the largest palindrome made from the product of two 4-digit numbers.
 
 #usually person brute force this by iterating all products of
-# three digits numbers and checking whether it is palindrome or not
-# I don't like this approach. I will generate all 6-digit palindromes
+# four digits numbers and checking whether it is palindrome or not
+# I don't like this approach. I will generate all 8-digit palindromes
 # then factoring it
+
+
+digits = 4
+maximum = 10**(digits) - 1
+minimum = 10**(digits - 1)
+
 def palindroms_generator():
     # start from largest palindromes as in description
-    for i in xrange(999, 99, -1):
+    for i in xrange(maximum, minimum - 1, -1):
         number = i
         palindrom = i
         # add reversed number to the end
@@ -37,23 +42,23 @@ def palindroms_generator():
             number = number / 10
         yield palindrom
 
-def three_digit_factors(number):
-    def is_three_digit(k):
-        return 999 >= k >= 100
+def right_digit_factors(number):
+    def is_right_digit(k):
+        return maximum >= k >= minimum
 
-    for i in xrange(999, 99, -1):
+    for i in xrange(maximum, minimum - 1, -1):
         quotient = number / i
         remainder = number % i
-        if not remainder and is_three_digit(quotient):
+        if not remainder and is_right_digit(quotient):
             yield (i, quotient)
             break
 
 for palindrom in palindroms_generator():
-    if 999**2 >= palindrom >= 100**2:
-        factors = list(three_digit_factors(palindrom))
+    if maximum**2 >= palindrom >= minimum**2:
+        factors = list(right_digit_factors(palindrom))
         if factors:
             # we found it
             break
 
 print "the largest palindrome made from " + \
-    "the product of two 3-digit numbers is %s" % palindrom
+    "the product of two %s-digit numbers is %s" % (digits, palindrom)
