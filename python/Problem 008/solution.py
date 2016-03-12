@@ -17,7 +17,7 @@
 
 
 # Task description:
-# Find subarray of 13 elements which product is a maximum in 100000 element array
+# Find subarray of 42 elements which product is a maximum in 100000 element array
 
 import random
 
