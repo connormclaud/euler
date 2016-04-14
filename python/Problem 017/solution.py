@@ -91,6 +91,7 @@ def number_to_word(number):
 
     return text
 
+
 def count_letters(word):
     ''' count letters besides spaces
     '''
