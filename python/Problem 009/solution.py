@@ -25,24 +25,27 @@
 
 sum_of_triple = 10000000
 if sum_of_triple % 2:
-    raise 'No possible solutions'
-half = sum_of_triple / 2
+    raise Exception('No possible solutions')
+half = sum_of_triple // 2
 
-#now we should found the solution for m and n in natural numbers
+
 def euclid_numbers(half):
-    for i in xrange(1, half):
+    ''' now we should found the solution for m and n in natural numbers
+    '''
+    for i in range(1, half):
         if sum_of_triple % i:
             # should be factor of sum
             continue
         m = i
-        n = half / m - m
+        n = half // m - m
         if m < n:
             continue
         return m, n
 
-# calculate triplet from euclid formula
 
 def euclid_triple(m, n):
+    ''' calculate triplet from euclid formula
+    '''
     a = m**2 - n**2
     b = 2*m*n
     c = m**2 + n**2
@@ -53,8 +56,9 @@ m, n = euclid_numbers(half)
 a, b, c = euclid_triple(m, n)
 
 if a**2 + b**2 != c**2:
-    raise 'Logic is broken. Found numbers are not Pythagorean triple'
+    raise Exception("Logic is broken. Found numbers aren't Pythagorean triple")
 
-print ('Product of Pythagorean triple '
-    'which sum is %s equal to %s\nTriple is %s|%s|%s') % (
-    sum_of_triple, a*b*c, a, b, c)
+print('Product of Pythagorean triple '
+      'which sum is %s equal to %s\nTriple is %s | %s | %s' % (
+          sum_of_triple, a*b*c, a, b, c
+      ))

@@ -25,13 +25,16 @@
 max_power = 6
 upper_limit = 3 * 10 ** max_power
 
+
 def power_sum(number, power):
     sum = 0
     while number:
         digit = number % 10
-        number = number / 10
+        number = number // 10
         sum += digit ** power
     return sum
 
-print sum(i for i in xrange(10, upper_limit) if i == power_sum(i, max_power))
-#
+answer = sum(i for i in range(10, upper_limit) if i == power_sum(i, max_power))
+
+print('the sum of all the numbers that can be written '
+      'as the sum of sixth powers of their digits', answer)

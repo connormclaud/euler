@@ -20,7 +20,7 @@
 
 # Find the largest palindrome made from the product of two 4-digit numbers.
 
-#usually person brute force this by iterating all products of
+# usually person brute force this by iterating all products of
 # four digits numbers and checking whether it is palindrome or not
 # I don't like this approach. I will generate all 8-digit palindromes
 # then factoring it
@@ -30,23 +30,25 @@ digits = 4
 maximum = 10**(digits) - 1
 minimum = 10**(digits - 1)
 
+
 def palindroms_generator():
     # start from largest palindromes as in description
-    for i in xrange(maximum, minimum - 1, -1):
+    for i in range(maximum, minimum - 1, -1):
         number = i
         palindrom = i
         # add reversed number to the end
         while number:
             palindrom *= 10
             palindrom += number % 10
-            number = number / 10
+            number = number // 10
         yield palindrom
+
 
 def right_digit_factors(number):
     def is_right_digit(k):
         return maximum >= k >= minimum
 
-    for i in xrange(maximum, minimum - 1, -1):
+    for i in range(maximum, minimum - 1, -1):
         quotient = number / i
         remainder = number % i
         if not remainder and is_right_digit(quotient):
@@ -60,5 +62,5 @@ for palindrom in palindroms_generator():
             # we found it
             break
 
-print "the largest palindrome made from " + \
-    "the product of two %s-digit numbers is %s" % (digits, palindrom)
+print("the largest palindrome made from "
+      "the product of two {0}-digit numbers is {1}".format(digits, palindrom))

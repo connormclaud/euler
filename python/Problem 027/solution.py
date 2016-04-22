@@ -22,15 +22,16 @@
 
 # Solution:
 # brute force
+
 limit = 2000
 sqrt_limit = int(limit**0.5) + 1
 formula_limit = 2000
 # Eratosphenes sieve
 # False means prime number
 sieve = [True, True, False] + [
-    False if x % 2 else True for x in xrange(3, limit)]
+    False if x % 2 else True for x in range(3, limit)]
 
-for candidate in xrange(3, sqrt_limit, 2):
+for candidate in range(3, sqrt_limit, 2):
     if not sieve[candidate]:
         # found prime number
         # mark all composites where found prime is a factor
@@ -48,15 +49,15 @@ def formula(n, a, b):
 maximum = 0
 max_a = -formula_limit - 1
 max_b = -formula_limit - 1
-for a in xrange(-formula_limit, formula_limit + 1):
-    for b in xrange(-formula_limit, formula_limit + 1):
-        for i in xrange(0, formula_limit):
+for a in range(-formula_limit, formula_limit + 1):
+    for b in range(-formula_limit, formula_limit + 1):
+        for i in range(0, formula_limit):
             if formula(i, a, b) not in primes:
                 if i > maximum:
                     maximum = i
                     max_a = a
                     max_b = b
                 break
-print "Formula (n**2 + %sn + %s) produces %s consecutive primes" % (
-    max_a, max_b, maximum)
+print("Formula (n**2 + %sn + %s) produces %s consecutive primes" % (
+    max_a, max_b, maximum))
 #

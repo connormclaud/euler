@@ -46,57 +46,9 @@
 #     end if;
 # end proc: # R. J. Mathar, Jul 16 2012
 
-from math import sqrt
-
-
-def prime_like_number_generator(stop_value=500000):
-    for i in [2, 3, 5]:
-        item = i
-        yield item
-    while(item < stop_value):
-        item += 2
-        yield item
-        item += 4
-        yield item
-
-number = 10000000
-# largest prime factor can't be greater than square of N
-primes_list = list(prime_like_number_generator(sqrt(number)))
-
-
-def prime_factors(number):
-    # step A1
-    primes = iter(primes_list)
-    k = primes.next()
-    n = number
-    quotient = number
-    while(quotient > k):
-        # step A2
-        if(n == 1):
-            return
-        # step A3
-        quotient = n / k
-        remainder = n % k
-        # step A4
-        if(remainder == 0):
-            # step A5
-            prime_factor = k
-            yield prime_factor
-            n = quotient
-            # return to step A2
-        else:
-            # step A6
-            k = primes.next()
-            # return to step A3
-    # step A7
-    prime_factor = n
-    yield prime_factor
-
-from itertools import takewhile
 
 def has_factors2or5(n):
-    return any(factor in (2, 5) for factor in takewhile(lambda x: x <= 5,
-        prime_factors(n)))
+    return not (n % 2 or n % 5)
 
 
 def proc(n):
@@ -105,11 +57,11 @@ def proc(n):
     if n == 1 or has_factors2or5(n):
         return 0
     while True:
-        for mpow in xrange(lpow - 1, 0, -1):
+        for mpow in range(lpow - 1, 0, -1):
             if (10**lpow - 10**mpow) % n == 0:
                 return lpow - mpow
         lpow += 1
 
-answer = max((proc(i), i) for i in xrange(1, 400))
-print 'longest recurring cicle is %s digits in number 1/%s' % answer
+answer = max((proc(i), i) for i in range(1, 400))
+print('longest recurring cicle is %s digits in number 1/%s' % answer)
 #

@@ -23,12 +23,13 @@
 # Solution:
 # brute force algorithm
 
+
 def chain_length(start):
     length = 0
     current = start
     while current > 1:
         if not current % 2:
-            current /= 2
+            current //= 2
         else:
             current = current * 3 + 1
         length += 1
@@ -36,11 +37,11 @@ def chain_length(start):
 
 max_length = 0
 max_number = 0
-for i in xrange(2*10**6, 1, -1):
+for i in range(2*10**6, 1, -1):
     length = chain_length(i)
     if length > max_length:
         max_length = length
         max_number = i
 
-print ('Number, under two million, produces the longest '
-       'Collatz sequence chain is %s' % max_number)
+print('Number, under two million, produces the longest '
+      'Collatz sequence chain is {0}'.format(max_number))

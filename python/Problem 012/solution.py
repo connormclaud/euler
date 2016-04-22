@@ -25,11 +25,12 @@
 
 MAX_DIVISORS = 1000
 
+
 def nth_triangle(n):
     ''' According http://oeis.org/A000217
     T(n) = n(n+1)/2, as it basically sum of arithmetic progression
     '''
-    return n * (n + 1) / 2
+    return n * (n + 1) // 2
 
 
 def divisors(number):
@@ -38,7 +39,7 @@ def divisors(number):
     '''
     answer = 0
     square = int(number**0.5)
-    for i in xrange(1, square + 1):
+    for i in range(1, square + 1):
         if not (number % i):
             answer += 2
     if square**2 == number:
@@ -46,11 +47,11 @@ def divisors(number):
     return answer
 
 
-for i in xrange(100000):
+for i in range(100000):
     if divisors(nth_triangle(i)) > MAX_DIVISORS:
-        print (
+        print((
             'The value of the first triangle number '
-            'to have over {0} divisors is {1}'.format(MAX_DIVISORS,
-                nth_triangle(i)))
+            'to have over {0} divisors is {1}'.format(
+                MAX_DIVISORS,
+                nth_triangle(i))))
         break
-

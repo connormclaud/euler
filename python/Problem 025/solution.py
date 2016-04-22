@@ -34,13 +34,12 @@ def fibonacci_sequence(stop_value=10000):
         previous, current = current, previous + current
         yield previous
 
-
-answer = (
+# generator magic
+answer = next((
     (index, len(str(number)))
     for index, number in enumerate(
         fibonacci_sequence(stop_value=10 * digits), 1)
-    if number / (digits / 10) > 0).next()
-print (
+    if number // (digits // 10) > 0))
+print((
     '%sth term in fibonacci sequence is first number'
-    ' having %s digits' % answer)
-#
+    ' having %s digits' % answer))

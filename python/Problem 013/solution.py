@@ -28,9 +28,9 @@
 import random
 
 random_numbers = [
-    int(random.randrange(10**50, 10**51 - 1)) for i in xrange(100)]
+    int(random.randrange(10**50, 10**51 - 1)) for i in range(100)]
 
-numbers = "\n".join(map(lambda x: str(x), random_numbers))
+numbers = "\n".join([str(x) for x in random_numbers])
 numbers_sum = sum([int(line) for line in numbers.split('\n')])
-print ('The first ten digits of the sum of the '
-       'one-hundred 50-digit numbers is %s') % str(numbers_sum)[:10]
+print(('The first ten digits of the sum of the '
+       'one-hundred 50-digit numbers is %s') % str(numbers_sum)[:10])

@@ -22,7 +22,8 @@
 
 limit = 4000000**160
 
-def fibonacci_sequence(stop_value = 10000):
+
+def fibonacci_sequence(stop_value=10000):
     '''Fibonacci sequence generator'''
     previous = 1
     yield previous
@@ -31,8 +32,7 @@ def fibonacci_sequence(stop_value = 10000):
         previous, current = current, previous + current
         yield previous
 
-sum_generated = reduce(lambda x, y: x + y
-            if not y % 2 else x, fibonacci_sequence(limit), 0)
-
-print 'The sum of the even-valued terms in the Fibonacci' +\
-    ' sequence whose values do not exceed %s is %s' % (limit, sum_generated)
+sum_generated = sum(i for i in fibonacci_sequence(limit) if not i % 2)
+print('The sum of the even-valued terms in the Fibonacci '
+      'sequence whose values do not exceed {0} is {1}'.format(
+          limit, sum_generated))

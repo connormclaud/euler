@@ -22,13 +22,14 @@
 
 # Solution:
 # brute force oneliner
+
 limit = 1000
 
 answer = len(
     {
-        a**b for a in xrange(2, limit + 1)
-        for b in xrange(2, limit + 1)
+        a**b for a in range(2, limit + 1)
+        for b in range(2, limit + 1)
     }
 )
-print 'There are %s distinct items in sequence' % answer
+print('There are %s distinct items in sequence' % answer)
 #

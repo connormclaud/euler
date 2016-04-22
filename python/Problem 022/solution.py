@@ -42,6 +42,5 @@ def alpha_value(name):
     return sum(ord(letter) - ord('A') for letter in name if letter != '"')
 
 
-print 'Sum of values for each name is %s' % sum(
-    (i * alpha_value(name)) for i, name in enumerate(names))
-#
+print('Sum of values for each name is %s' % sum(
+    (i * alpha_value(name)) for i, name in enumerate(names)))

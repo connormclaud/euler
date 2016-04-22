@@ -18,22 +18,27 @@
 
 # Task description:
 # Find the difference between the sum of the squares
-# of the first one thousand natural numbers and the square of the sum.
+# of the first one hundred thousand natural numbers and the square of the sum.
 
 # sum of squares and a sum of consequitive numbers are basically
 # arithmetic progressions with known formulas. Let's use them
 
-limit = 1000
+limit = 100000
+
 
 def sum_of_squares(limit):
-    # formula is n(n+1)(2n+1)/6
-    return limit*(limit + 1)*(2*limit + 1)/6
+    ''' formula is n(n+1)(2n+1)/6
+    '''
+    return limit * (limit + 1) * (2 * limit + 1) // 6
+
 
 def square_of_sum(limit):
-    # formula of sum is n(n+1)/2
-    return (limit*(limit+1)/2)**2
+    ''' formula of sum is n(n+1)/2
+    '''
+    return (limit * (limit + 1) // 2) ** 2
 
 difference = square_of_sum(limit) - sum_of_squares(limit)
 
-print "The difference between the sum of the squares of the first " + \
-    "%s consequitive numbers and the square of the sum is %s" % (limit, difference)
+print('The difference between the sum of the squares of the first '
+      '{0} consequitive numbers and the square of the sum is {1}'.format(
+          limit, difference))

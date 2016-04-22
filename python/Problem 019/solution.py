@@ -26,10 +26,11 @@ from datetime import datetime
 
 MONDAY = 0
 
-print sum(1 for date in (
+count = sum(1 for date in (
     datetime(year, month, 1)
-    for year in xrange(1, 10000)
-    for month in xrange(1, 13))
+    for year in range(1, 10000)
+    for month in range(1, 13))
     if date.weekday() == MONDAY)
 
-#
+print('There are {0} Mondays from 1/1/1 12/31/9999 '
+      'on first day of month'.format(count))

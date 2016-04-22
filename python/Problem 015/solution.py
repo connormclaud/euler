@@ -30,9 +30,9 @@
 
 def binomial_coefficient(n, k):
     result = 1
-    for i in xrange(1, k+1):
-        result = result * (n - i + 1) / i
+    for i in range(1, k+1):
+        result = result * (n - i + 1) // i
     return result
 
-answer =  binomial_coefficient(400, 200)
-print 'There are %s routes through a 200×200 grid' % answer
+answer = binomial_coefficient(400, 200)
+print('There are {0} routes through a 200×200 grid'.format(answer))

@@ -24,24 +24,26 @@
 # generate set of abundant numbers
 # sum all number which is not sum of any two numbers in set
 
+
 def proper_divisors(number):
-    for i in xrange(1, number / 2 + 1):
+    for i in range(1, number // 2 + 1):
         if number % i == 0:
             yield i
 
 
 def abundant_numbers(stop=200):
-    for i in xrange(12, stop):
+    for i in range(12, stop):
         if sum(proper_divisors(i)) > i:
             yield i
 
 
 def not_sum(stop=200):
     abundant = set(abundant_numbers(stop))
-    for i in xrange(1, stop):
+    for i in range(1, stop):
         if not any((i - a in abundant for a in abundant)):
             yield i
 
 
-print sum(not_sum(1000))
-#
+answer = sum(not_sum(1000))
+print('sum of all the positive integers below 1000 which cannot be '
+      'written as the sum of two abundant numbers is', answer)

@@ -21,17 +21,20 @@
 
 
 # Solution:
+
 # this problem is oneliner in python
 # we convert number to str and iterate over all
 # digits to sum them up
 #
+
 from math import factorial
 
 number = 100000
+
 
 def digit_sum(n):
     return sum(map(int, str(n)))
 
 answer = digit_sum(factorial(number))
 
-print 'The sum of the digits of the number %s! is' % number, answer
+print('The sum of the digits of the number {0}! is {1}'.format(number, answer))

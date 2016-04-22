@@ -20,25 +20,27 @@
 # Evaluate the sum of all the amicable numbers under 20000.
 
 # Solution:
+#115818
 # There is efficient solution for generating large pairs
 # http://www.ams.org/journals/mcom
 # /1986-47-175/S0025-5718-1986-0842142-3/home.html
 
 # but here bruteforce is enough
 
+
 def proper_divisors(number):
-    for i in xrange(1, number):
+    for i in range(1, number // 2 + 1):
         if number % i == 0:
             yield i
 
 
 def amicable_pairs(stop=2000):
-    for i in xrange(2, stop):
+    for i in range(2, stop):
         candidate = sum(proper_divisors(i))
         if (i > candidate and candidate != i
             and sum(proper_divisors(candidate)) == i):
             yield candidate, i
 
 sum_pairs = sum(sum(pair) for pair in amicable_pairs(20000))
-print 'The sum of all amicable numbers under 20000 is', sum_pairs
+print('The sum of all amicable numbers under 20000 is', sum_pairs)
 #

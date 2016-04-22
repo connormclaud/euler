@@ -20,22 +20,26 @@
 # Compute least common multiplier for all integers from 1 to 160
 
 limit = 160
-#we can decrease number of calculations by dropping first half of input.
-input = range(limit/2 + 1, limit + 1, 1)
+# we can decrease number of calculations by dropping first half of input.
+input = range(limit//2 + 1, limit + 1, 1)
 
-# greatest common divisor by Euclid's algorithm
+
 def gcd(a, b):
+    ''' greatest common divisor by Euclid's algorithm
+    '''
     while b:
         a, b = b, a % b
     return a
 
-# least common multiple for two numbers
+
 def lcm(a, b):
-    return a / gcd(a, b) * b
+    ''' least common multiple for two numbers
+    '''
+    return a // gcd(a, b) * b
 
 result = 1
 for i in input:
     result = lcm(result, i)
 
-print "the smallest positive number that is evenly divisible"+\
-    " by all of the numbers from 1 to %s is %s" % (limit, result)
+print("the smallest positive number that is evenly divisible"
+      " by all of the numbers from 1 to {0} is {1}".format(limit, result))

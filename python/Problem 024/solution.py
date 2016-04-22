@@ -23,9 +23,9 @@
 # alredy produce it in lexographic order
 from itertools import permutations, islice
 
-answer =  [
+answer = [
     "".join(item) for item in islice(
         permutations('0123456789'), 3000000, 3000001)][0]
 
-print '3 millionth permutation of all digits is', answer
+print('3 millionth permutation of all digits is', answer)
 #

@@ -18,12 +18,15 @@
 
 # Task description:
 # Find the greatest product of four numbers in grid 20x20 on any direction
+
 import random
+
+from functools import reduce
 
 # generate random grid
 length = 20
 grid = [[
-    int(100 * random.random()) for i in xrange(length)] for i in xrange(length)]
+    int(100 * random.random()) for i in range(length)] for i in range(length)]
 elements = 4
 
 #straightforward algorithms. Just traverse grid and calculate products
@@ -43,27 +46,20 @@ def largest_product_in_grid(grid):
 
         has_columns = column + elements <= length
         if has_columns:
-            horizontal = map(
-                lambda index: grid[row][column + index], xrange(elements)
-            )
+            horizontal = [
+                grid[row][column + index] for index in range(elements)]
             check_largest(horizontal)
         has_rows = row + elements <= length
         if has_rows:
-            vertical = map(
-                lambda index: grid[row + index][column], xrange(elements)
-            )
+            vertical = [grid[row + index][column] for index in range(elements)]
             check_largest(vertical)
         if has_rows and column >= elements:
-            diagonal_backward = map(
-                lambda index: grid[row + index][column - index],
-                xrange(elements)
-            )
+            diagonal_backward = [
+                grid[row + index][column - index] for index in range(elements)]
             check_largest(diagonal_backward)
         if has_rows and has_columns:
-            diagonal_forward = map(
-                lambda index: grid[row + index][column + index],
-                xrange(elements)
-            )
+            diagonal_forward = [
+                grid[row + index][column + index] for index in range(elements)]
             check_largest(diagonal_forward)
 
     for row, line in enumerate(grid):
@@ -73,5 +69,5 @@ def largest_product_in_grid(grid):
     return largest_items[0], largest_product[0]
 
 
-print ('the greatest product of four adjacent numbers'
-    '%s in the same direction is:%s') % largest_product_in_grid(grid)
+print(('the greatest product of four adjacent numbers'
+    '%s in the same direction is:%s') % largest_product_in_grid(grid))

@@ -25,11 +25,12 @@
 # we convert number to str and iterate over all
 # digits to sum them up
 #
+number = 2**1000000
 
 
 def digit_sum(n):
     return sum(map(int, str(n)))
 
-answer = digit_sum(2**1000000)
+answer = digit_sum(number)
 
-print 'The sum of the digits of the number 2*1000000 is', answer
+print('The sum of the digits of the number 2*1000000 is {0}'.format(answer))

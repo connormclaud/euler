@@ -17,10 +17,10 @@
 
 
 # Task description:
-# Find the sum of all the multiples of 3 or 5 below 1000^2.
-limit = 1000**2
+# Find the sum of all the multiples of 3 or 5 below 16*1000^2.
+limit = 16*1000**2
 
-sum_brute = reduce(lambda x, y: x + y
-             if not y % 3 or not y % 5 else x, xrange(limit), 0)
+sum_brute = (sum(n for n in range(limit) if not (n % 3 and n % 5)))
 
-print 'Sum of all the multiples of 3 or 5 below %s is %s' % (limit, sum_brute)
+print('Sum of all the multiples of 3 or 5 below {0} is {1}'.format(
+    limit, sum_brute))

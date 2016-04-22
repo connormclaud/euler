@@ -17,10 +17,11 @@
 
 
 # Task description:
-#What is the largest prime factor of the number 269685300662584836649?
+# What is the largest prime factor of the number 269685300662584836649?
 
 # we will use simple factorizing algorithm from Knuth's The art of computer
-# programming Vol2 4.5.4 Factoring into Primes Algorithm A (Factoring by division)
+# programming Vol2 4.5.4
+# Factoring into Primes Algorithm A (Factoring by division)
 # This algorithm is simple but not efficient for large number.
 
 # we need prime numbers to divide for. Fortunately, this algorithm will work
@@ -28,6 +29,9 @@
 # So we can add 2 and 4 for items after first three. This list will contain
 # all prime numbers and more.
 from math import sqrt
+import collections
+
+
 def prime_like_number_generator(stop_value=500000):
     for i in [2, 3, 5]:
         item = i
@@ -39,12 +43,13 @@ def prime_like_number_generator(stop_value=500000):
         yield item
 
 number = 269685300662584836649
-#largest prime factor can't be greater than square of N
+# largest prime factor can't be greater than square of N
 primes = prime_like_number_generator(sqrt(number))
+
 
 def prime_factors(number):
     # step A1
-    k = primes.next()
+    k = next(primes)
     n = number
     quotient = number
     while(quotient > k):
@@ -52,7 +57,7 @@ def prime_factors(number):
         if(n == 1):
             return
         # step A3
-        quotient = n / k
+        quotient = n // k
         remainder = n % k
         # step A4
         if(remainder == 0):
@@ -63,22 +68,13 @@ def prime_factors(number):
             # return to step A2
         else:
             # step A6
-            k = primes.next()
+            k = next(primes)
             # return to step A3
     # step A7
     prime_factor = n
     yield prime_factor
 
-
-
-factors = list(prime_factors(number))
-
-# check whether factors are right. Just multiply all of them
-multiply = reduce(lambda x, y: x * y, factors, 1)
-if multiply != number:
-    raise "Logic is broken"
-
-largest_prime_factor = factors[-1]
-
-print 'The largest prime factor of' + \
-    ' the number %s is %s' % (number, largest_prime_factor)
+# get last element from generator
+largest_prime_factor = collections.deque(prime_factors(number), maxlen=1).pop()
+print('The largest prime factor of'
+      ' the number {0} is {1}'.format(number, largest_prime_factor))

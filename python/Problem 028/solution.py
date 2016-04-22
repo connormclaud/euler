@@ -26,8 +26,8 @@
 
 
 def generate_spiral(dimension):
-    spiral = [[0 for x in xrange(dimension)] for x in xrange(dimension)]
-    i = dimension / 2
+    spiral = [[0 for x in range(dimension)] for x in range(dimension)]
+    i = dimension // 2
     j = i
     value = 1
     steps_left = 1
@@ -46,17 +46,18 @@ def generate_spiral(dimension):
         steps_left -= 1
     return spiral[::-1]
 
-dim = 5001
-spiral = generate_spiral(dim)
 
 def diagonal_values(spiral, dimensions):
-    for i in xrange(dimensions):
+    for i in range(dimensions):
         yield spiral[i][i]
         if i != dimensions - i - 1:
             yield spiral[i][dimensions - i - 1]
 
+dim = 5001
+spiral = generate_spiral(dim)
+
 sum_values = 0
 
 answer = sum(diagonal_values(spiral, dim))
-print 'Sum of diagonal numbers of spiral %sx%s is' % (dim, dim), answer
+print('Sum of diagonal numbers of spiral %sx%s is' % (dim, dim), answer)
 #

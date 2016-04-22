@@ -51,15 +51,11 @@ input = '''
 36 10 63 96 60 49 41 05 37 42 14 58 84 93 96 17 09 43 05 43 06 59
 66 57 87 57 61 28 37 51 84 73 79 15 39 95 88 87 43 39 11 86 77 74 18
 54 42 05 79 30 49 99 73 46 37 50 02 45 09 54 52 27 95 27 65 19 45 26 45
-71 39 17 78 76 29 52 90 18 99 78 19 35 62 71 19 23 65 93 85 49 33 75 09 02
+71 39 17 78 76 29 52 90 18 99 78 19 35 62 71 09 23 65 93 85 49 33 75 09 02
 33 24 47 61 60 55 32 88 57 55 91 54 46 57 07 77 98 52 80 99 24 25 46 78 79 05
-92 09 13 55 10 67 26 78 76 82 63 49 51 31 24 68 05 57 07 54 69 21 67 43 17 63 12
 '''
 
-data = []
-for line in input[1:].splitlines():
-    data.append([int(s) for s in line.split()])
-
+data = [[int(s) for s in line.split()] for line in input[1:].splitlines()]
 # go bottom to top
 
 reverse = data[::-1]
@@ -74,5 +70,5 @@ while len(reverse) > 1:
     # make problem one line shorter
     del reverse[0]
 
-print reverse[0][0]
-#
+print('Maximum total from top to bottom of the triangle is {0}'.format(
+    reverse[0][0]))

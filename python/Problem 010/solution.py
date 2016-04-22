@@ -25,9 +25,9 @@ sqrt_limit = int(limit**0.5) + 1
 # Eratosphenes sieve
 # False means prime number
 sieve = [True, True, False] + [
-    False if x % 2 else True for x in xrange(3, limit)]
+    False if x % 2 else True for x in range(3, limit)]
 
-for candidate in xrange(3, sqrt_limit, 2):
+for candidate in range(3, sqrt_limit, 2):
     if not sieve[candidate]:
         # found prime number
         # mark all composites where found prime is a factor
@@ -36,5 +36,5 @@ for candidate in xrange(3, sqrt_limit, 2):
             sieve[i*candidate] = True
             i += 1
 
-sum_primes = sum(map(lambda x: x[0] if not x[1] else 0, enumerate(sieve)))
-print 'Sum of all primes below %s is %s' % (limit, sum_primes)
+sum_primes = sum([x[0] if not x[1] else 0 for x in enumerate(sieve)])
+print('Sum of all primes below %s is %s' % (limit, sum_primes))

@@ -26,6 +26,7 @@
 # http://www.blackwasp.co.uk/NumberToWords.aspx
 
 # Single-digit and small number names
+
 _small_numbers = [
     'zero', 'one', 'two', 'three', 'four', 'five', 'six',
     'seven', 'eight', 'nine',
@@ -44,7 +45,7 @@ _scale_numbers = ['', 'thousand', 'million', 'billion']
 
 def group_to_text(group):
     text = ''
-    hundreds = group / 100
+    hundreds = group // 100
     tens_unit = group % 100
 
     if hundreds != 0:
@@ -52,7 +53,7 @@ def group_to_text(group):
         if tens_unit != 0:
             text += ' and '
 
-    tens = tens_unit / 10
+    tens = tens_unit // 10
     units = tens_unit % 10
 
     if tens >= 2:
@@ -95,10 +96,13 @@ def number_to_word(number):
 def count_letters(word):
     ''' count letters besides spaces
     '''
-    return len([letter for letter in word if letter not in (' ')])
+    return sum(1 for letter in word if letter not in (' '))
 
 number_of_letters = sum(
-    count_letters(number_to_word(i)) for i in xrange(1, 1000001))
+    count_letters(number_to_word(i)) for i in range(1, 1000001))
+
+example = 84572934
+print("Example: {0} is {1} ".format(example, number_to_word(example)))
 #
-print ('Number of letters in numbers from '
-       '1 to 1000000 written in words is %s ' % number_of_letters)
+print(('Number of letters in numbers from '
+       '1 to 1000000 written in words is %s ' % number_of_letters))

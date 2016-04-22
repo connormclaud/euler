@@ -17,13 +17,17 @@
 
 
 # Task description:
-# Find subarray of 42 elements which product is a maximum in 100000 element array
+# Find subarray of 42 elements which product
+# is a maximum in 100000 element array
+
 
 import random
 
+from functools import reduce
+
 # generate random array
 digits = 100000
-array = [int(10 * random.random()) for i in xrange(digits)]
+array = [int(10 * random.random()) for i in range(digits)]
 
 elements = 42
 max_value = 0
@@ -34,14 +38,14 @@ for index, item in enumerate(array):
     if index + elements > len(array):
         break
     # calculate a product of next elements
-    product = reduce(lambda x, y: array[y + index] * x, xrange(elements), 1)
+    product = reduce(lambda x, y: array[y + index] * x, range(elements), 1)
     if product > max_value:
         # if it is a maximum, remember it
         max_value = product
         max_start = index
 # print the product
-print ('The %s adjacent items in the %s-member array'
-    ' that have the greatest product are: ') % (elements, digits)
-print ' x '.join(map(lambda x: str(array[x + max_start]), xrange(elements))),
-print '=',
-print max_value
+print(('The %s adjacent items in the %s-member array'
+    ' that have the greatest product are: ') % (elements, digits))
+print(' x '.join([str(array[x + max_start]) for x in range(elements)]), end=' ')
+print('=', end=' ')
+print(max_value)
