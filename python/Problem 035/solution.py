@@ -74,15 +74,18 @@ def small_test(number):
             return False
     return True
 
+
 def generate_guesses():
     return (
         "".join(i) for j in range(3, 6)
         for i in it.product('1379', repeat=j) if min(i) == i[0])
 
+
 def generate_circles(s):
     d = deque(s)
     return {(
         d.rotate(), "".join(d))[1] for i in range(len(d))}
+
 
 def check(number, method):
     memo = check.memo.get(method, dict())
@@ -99,6 +102,7 @@ def check(number, method):
 
 check.memo = dict()
 
+
 def find():
     for number in generate_guesses():
         if not check(number, small_test):
@@ -109,7 +113,7 @@ def find():
 
 circular_primes = {int(i) for i in find()}
 print("There are %s circular primes before %s" % (
-    len(circular_primes) + 13, 100000) )
+    len(circular_primes) + 13, 100000))
 
 
 #
